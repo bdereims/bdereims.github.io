@@ -1,1 +1,19 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2022-07-21T15:35:47+02:00</updated><id>/feed.xml</id><title type="html">bdereims’ hacks</title><subtitle>This is my personal blog which references all my hacks. Use as is without any warranty. If there are typos and disclosing information, let me know.</subtitle></feed>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-07-21T17:09:12+02:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">bdereims’ hacks</title><subtitle>This is my personal blog which references all my hacks. Use as is without any warranty. If there are typos and disclosing information, let me know.</subtitle><entry><title type="html">Run NGC container in Windows 11</title><link href="http://localhost:4000/conatiner/ia/ngc/2022/07/21/ngc-container-wsl.html" rel="alternate" type="text/html" title="Run NGC container in Windows 11" /><published>2022-07-21T15:37:15+02:00</published><updated>2022-07-21T15:37:15+02:00</updated><id>http://localhost:4000/conatiner/ia/ngc/2022/07/21/ngc-container-wsl</id><content type="html" xml:base="http://localhost:4000/conatiner/ia/ngc/2022/07/21/ngc-container-wsl.html"><![CDATA[<p>I’m a big server Linux fan and have used laptop macOS for over 10 years now for its unix like shell. Windows has now the famous Windows Subsystem for Linux, time to give it a shot! Furthermore, I want also escape Docker Desktop fees… Let’s try something fancy.</p>
+
+<p>First step is to activate WSL on your Win11 box. So, to do that you need to enable 2 features like below:</p>
+
+<p><img src="/gfx/activate-wsl.png" alt="win11-wsl" /></p>
+
+<p>Followed in command prompt: <code class="language-plaintext highlighter-rouge">wsl --install --distribution Ubuntu-20.04</code></p>
+
+<p>To run containers, we need to install podman. It’s a free open source docker engine alternative. If you hope to use docker-ce in wsl you wrong, it needs Docker Desktop that is not free if you’re working for large enterprise.</p>
+
+<p>Within WSL shell:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># source /etc/os-release
+# sh -c "echo 'deb http://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/xUbuntu_${VERSION_ID}/ /' &gt; /etc/apt/sources.list.d/devel:kubic:libcontainers:stable.list"
+# wget -nv https://download.opensuse.org/repositories/devel:kubic:libcontainers:stable/xUbuntu_${VERSION_ID}/Release.key -O- | apt-key add -
+# apt-get update -qq -y
+# apt-get -qq --yes install podman
+# podman version
+</code></pre></div></div>]]></content><author><name></name></author><category term="conatiner" /><category term="ia" /><category term="ngc" /><summary type="html"><![CDATA[I’m a big server Linux fan and have used laptop macOS for over 10 years now for its unix like shell. Windows has now the famous Windows Subsystem for Linux, time to give it a shot! Furthermore, I want also escape Docker Desktop fees… Let’s try something fancy.]]></summary></entry></feed>
