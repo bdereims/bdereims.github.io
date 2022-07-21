@@ -8,6 +8,6 @@ permalink: /about/
 ![gravatar picture](https://www.gravatar.com/avatar/143fa2464325888f27b2d39a1ab43016?s=200)
 
 
-Brice has spent more than 22 years of his professional life on Datacenter and Hybrid Cloud topics (EDS/HP, BMC, Microsoft, CA, VMware and NVIDIA). He has an impressive track record in helping customers to modernize Data Centers (SDDC), adopt Cloud Native (Kubernetes) and Dev(Sec)Ops practices. Now he is working on AI, specifically about AI architecture for large scale environnement.
+Brice has begun his professional life in 1999 dedicated to Datacenter and Hybrid Cloud topics (EDS/HP, BMC, Microsoft, CA, VMware and NVIDIA). He has an impressive track record in helping customers to modernize Data Centers (SDDC), adopt Cloud Native (Kubernetes) and Dev(Sec)Ops practices. Now he is working on AI, specifically about AI architecture for large scale environnement.
 He has a Master’s Degree in Computer and Network Engineering and has begun his career as an IT Teacher in Engineering school. Passionate to push himself hard and raise the bar, he is a half-marathon runner with several accomplishments, play golf and skiing in different places across the world for off-run sites and ski-touring. When he is not behind a keyboard, he is also passionate about FPV Drone and Motorsport. He is dad of 3 children and currently resides in Paris, France.
 
