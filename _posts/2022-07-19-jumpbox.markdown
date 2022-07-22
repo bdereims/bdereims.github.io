@@ -1,0 +1,11 @@
+---
+layout: post
+title:  "Ubunru 20.04 LTS Jumpbox"
+date:   2022-07-19 10:00:00 +0200
+categories: linux ubuntu vm cloud-garage
+---
+It's always good to have a VM Jumbox or a simple way to configure your machine! For this I wrote a bunch of automated scripts, for this annoying task. You will get the necessary setup and tools to perform your daily tasks. It comes with: kubectl, stern, docker engine, docker-compose, helm, govc, kubectx, kubens, extend-rootfs.sh, curl, jq, sshpass, unzip, tmux, bash-completion, startup-script.
+
+Use this [repo](https://github.com/bdereims/cloud-garage/tree/main/install/sixty9) and execute as root ``bootsrap.sh``. Only validated for freshly installed Ubuntu 20.04 LTS, as VM or bare metal.
+
+Enjoy!
