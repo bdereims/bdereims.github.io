@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="https://bdereims.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://bdereims.github.io/" rel="alternate" type="text/html" /><updated>2022-07-21T17:11:26+02:00</updated><id>https://bdereims.github.io/feed.xml</id><title type="html">bdereims’ hacks</title><subtitle>This is my personal blog which references all my hacks. Use as is without any warranty. If there are typos and disclosing information, let me know.</subtitle><entry><title type="html">Run NGC container in Windows 11</title><link href="https://bdereims.github.io/conatiner/ia/ngc/2022/07/21/ngc-container-wsl.html" rel="alternate" type="text/html" title="Run NGC container in Windows 11" /><published>2022-07-21T15:37:15+02:00</published><updated>2022-07-21T15:37:15+02:00</updated><id>https://bdereims.github.io/conatiner/ia/ngc/2022/07/21/ngc-container-wsl</id><content type="html" xml:base="https://bdereims.github.io/conatiner/ia/ngc/2022/07/21/ngc-container-wsl.html"><![CDATA[<p>I’m a big server Linux fan and have used laptop macOS for over 10 years now for its unix like shell. Windows has now the famous Windows Subsystem for Linux, time to give it a shot! Furthermore, I want also escape Docker Desktop fees… Let’s try something fancy.</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="https://bdereims.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://bdereims.github.io/" rel="alternate" type="text/html" /><updated>2022-07-22T13:00:10+02:00</updated><id>https://bdereims.github.io/feed.xml</id><title type="html">bdereims’ hacks</title><subtitle>This is my personal blog which references all my hacks. Use as is without any warranty. If there are typos and disclosing information, let me know.</subtitle><entry><title type="html">Run NGC container in Windows 11</title><link href="https://bdereims.github.io/conatiner/ia/ngc/2022/07/21/ngc-container-wsl.html" rel="alternate" type="text/html" title="Run NGC container in Windows 11" /><published>2022-07-21T15:37:15+02:00</published><updated>2022-07-21T15:37:15+02:00</updated><id>https://bdereims.github.io/conatiner/ia/ngc/2022/07/21/ngc-container-wsl</id><content type="html" xml:base="https://bdereims.github.io/conatiner/ia/ngc/2022/07/21/ngc-container-wsl.html"><![CDATA[<p>I’m a big server Linux fan and have used laptop macOS for over 10 years now for its unix like shell. Windows has now the famous Windows Subsystem for Linux, time to give it a shot! Furthermore, I want also escape Docker Desktop fees… Let’s try something fancy.</p>
 
 <p>First step is to activate WSL on your Win11 box. So, to do that you need to enable 2 features like below:</p>
 
@@ -16,4 +16,99 @@
 # apt-get update -qq -y
 # apt-get -qq --yes install podman
 # podman version
-</code></pre></div></div>]]></content><author><name></name></author><category term="conatiner" /><category term="ia" /><category term="ngc" /><summary type="html"><![CDATA[I’m a big server Linux fan and have used laptop macOS for over 10 years now for its unix like shell. Windows has now the famous Windows Subsystem for Linux, time to give it a shot! Furthermore, I want also escape Docker Desktop fees… Let’s try something fancy.]]></summary></entry></feed>
+</code></pre></div></div>
+
+<p>You should get:</p>
+
+<p><img src="/gfx/podam-version.png" alt="podman-version" /></p>
+
+<p>You have to set default registry: 
+<code class="language-plaintext highlighter-rouge"># echo 'unqualified-search-registries = ["docker.io"]' | sudo tee /etc/containers/registries.conf</code></p>
+
+<p>Verify that nvidia driver is working propely: <code class="language-plaintext highlighter-rouge"># nvidia-smi</code>, you should get something like:</p>
+
+<p><img src="/gfx/nvidia-smi-win11.png" alt="nvidia-smi" /></p>
+
+<p>Install <a href="https://github.com/henrymai/podman_wsl2_cuda_rootless">nvidia-container-toolkit</a> (cf. https://github.com/henrymai/podman_wsl2_cuda_rootless )</p>
+
+<p>Modify file <code class="language-plaintext highlighter-rouge">/etc/nvidia-container-runtime/config.toml</code> like this:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>disable-require = false
+#swarm-resource = "DOCKER_RESOURCE_GPU"
+#accept-nvidia-visible-devices-envvar-when-unprivileged = true
+#accept-nvidia-visible-devices-as-volume-mounts = false
+
+[nvidia-container-cli]
+#root = "/run/nvidia/driver"
+#path = "/usr/bin/nvidia-container-cli"
+environment = []
+#debug = "/var/log/nvidia-container-toolkit.log"
+#ldcache = "/etc/ld.so.cache"
+load-kmods = true
+#no-cgroups = false
+no-cgroups = true
+#user = "root:video"
+ldconfig = "@/sbin/ldconfig.real"
+
+[nvidia-container-runtime]
+#debug = "/var/log/nvidia-container-runtime.log"
+debug = "~/.local/nvidia-container-runtime.log"
+log-level = "info"
+
+# Specify the runtimes to consider. This list is processed in order and the PATH
+# searched for matching executables unless the entry is an absolute path.
+runtimes = [
+    "docker-runc",
+    "runc",
+]
+
+mode = "auto"
+
+[nvidia-container-runtime.modes.csv]
+mount-spec-path = "/etc/nvidia-container-runtime/host-files-for-container.d"
+</code></pre></div></div>
+
+<p>Configure hook with this lines:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Configure hook
+
+sudo -i
+mkdir -p /usr/share/containers/oci/hooks.d/
+cat &lt;&lt; EOF | sudo tee /usr/share/containers/oci/hooks.d/oci-nvidia-hook.json
+{
+    "version": "1.0.0",
+    "hook": {
+        "path": "/usr/bin/nvidia-container-toolkit",
+        "args": ["nvidia-container-toolkit", "prestart"],
+        "env": [
+            "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+        ]
+    },
+    "when": {
+        "always": true,
+        "commands": [".*"]
+    },
+    "stages": ["prestart"]
+}
+EOF
+</code></pre></div></div>
+
+<p>Last step for configuration is to increase limits defined in <code class="language-plaintext highlighter-rouge">/etc/security/limits.conf</code> like below, replace <code class="language-plaintext highlighter-rouge">[your-user]</code> by what returns <code class="language-plaintext highlighter-rouge">whoami</code>:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[your-user] soft memlock unlimited
+[your-user] hard memlock unlimited
+[your-user] soft stack 65536
+[your-user] hard stack 65536
+</code></pre></div></div>
+
+<p>If you not yet familiar with that is NGC, it’s time to visite <a href="https://catalog.ngc.nvidia.com/">NGC Catalog</a> and <a href="https://catalog.ngc.nvidia.com/orgs/nvidia/collections/gettingstarted">the getting started</a>. Create your account and install <a href="https://ngc.nvidia.com/setup">ngc cli</a>.</p>
+
+<p>Let’s try this <a href="https://catalog.ngc.nvidia.com/orgs/nvidia/resources/fashion_mnist_tf_example/version/1.0/files/FashionMNIST%20Notebook.ipynb">example</a>.</p>
+
+<p>Launch example with: <code class="language-plaintext highlighter-rouge">podman run -it --gpus all -p 8888:8888 -v $PWD:/projects --network=host nvcr.io/nvidia/tensorflow:20.08-tf1-py3</code> and follow jupyter notebook. You should able to run example:</p>
+
+<p><img src="/gfx/ngc-example.png" alt="ngc-example" /></p>
+
+<p>Conclusion:</p>
+<ul>
+  <li>podman on wsl works great</li>
+  <li>with ngc container running localy, it’s easy to learn and test ML/AI topics</li>
+  <li>first step before to work with large scale environnement like Base Command</li>
+</ul>]]></content><author><name></name></author><category term="conatiner" /><category term="ia" /><category term="ngc" /><summary type="html"><![CDATA[I’m a big server Linux fan and have used laptop macOS for over 10 years now for its unix like shell. Windows has now the famous Windows Subsystem for Linux, time to give it a shot! Furthermore, I want also escape Docker Desktop fees… Let’s try something fancy.]]></summary></entry></feed>
