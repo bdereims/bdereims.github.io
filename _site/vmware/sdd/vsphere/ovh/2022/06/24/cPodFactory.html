@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Nested SDDC for Testing/Lab/Demo | bdereims’ hacks</title>
+<meta name="generator" content="Jekyll v4.2.2" />
+<meta property="og:title" content="Nested SDDC for Testing/Lab/Demo" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="dFactory is one of my projects during my VMware years. The main purpose is to automatically and dynamically create nested SDDC environments. It’s means you with it the capability to create a separated but nested vSphere SDDC fully routed (dedicated L2 but L3 routed) configured and ready to use." />
+<meta property="og:description" content="dFactory is one of my projects during my VMware years. The main purpose is to automatically and dynamically create nested SDDC environments. It’s means you with it the capability to create a separated but nested vSphere SDDC fully routed (dedicated L2 but L3 routed) configured and ready to use." />
+<link rel="canonical" href="https://bdereims.github.io/vmware/sdd/vsphere/ovh/2022/06/24/cPodFactory.html" />
+<meta property="og:url" content="https://bdereims.github.io/vmware/sdd/vsphere/ovh/2022/06/24/cPodFactory.html" />
+<meta property="og:site_name" content="bdereims’ hacks" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-06-24T19:00:00+02:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Nested SDDC for Testing/Lab/Demo" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2022-06-24T19:00:00+02:00","datePublished":"2022-06-24T19:00:00+02:00","description":"dFactory is one of my projects during my VMware years. The main purpose is to automatically and dynamically create nested SDDC environments. It’s means you with it the capability to create a separated but nested vSphere SDDC fully routed (dedicated L2 but L3 routed) configured and ready to use.","headline":"Nested SDDC for Testing/Lab/Demo","mainEntityOfPage":{"@type":"WebPage","@id":"https://bdereims.github.io/vmware/sdd/vsphere/ovh/2022/06/24/cPodFactory.html"},"url":"https://bdereims.github.io/vmware/sdd/vsphere/ovh/2022/06/24/cPodFactory.html"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="https://bdereims.github.io/feed.xml" title="bdereims' hacks" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">bdereims&#39; hacks</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Nested SDDC for Testing/Lab/Demo</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2022-06-24T19:00:00+02:00" itemprop="datePublished">Jun 24, 2022
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>dFactory is one of my projects during my VMware years. The main purpose is to automatically and dynamically create nested SDDC environments. It’s means you with it the capability to create a separated but nested vSphere SDDC fully routed (dedicated L2 but L3 routed) configured and ready to use.</p>
+
+<p>It comes with <code class="language-plaintext highlighter-rouge">cpodctl</code> command line giving you all necessary command to manage cPod lifecycle. A cPod is a lab or if you prefer the nested vSphere. You can:</p>
+<ol>
+  <li>Create a cPod: naked one (without esx but all networking facilities) or specifying number of esx</li>
+  <li>Delete a cPod entirely, caution - it’s fast without roll back</li>
+  <li>Deploy &amp; configure vCenter accordingly your cPod</li>
+  <li>List all cPods</li>
+  <li>Deploy VCF cloudbuilder if you want to transform cPod into VCF cluster(s)</li>
+  <li>Retrieve the auto generated cPod password</li>
+  <li>Override some variables to customize your cPod</li>
+  <li>Use completion in bash to facilitate life with tab key</li>
+</ol>
+
+<p>cpodctl cli:
+<img src="/gfx/cpodfactory-cpodctl.png" alt="cpodctl cli" /></p>
+
+<p>A large Availability Zone running physical layer by VCF:
+<img src="/gfx/cpodfactory-az-fkd.png" alt="cpodctl cli" /></p>
+
+<p>cPodFactory also offers:</p>
+<ul>
+  <li>Multi availability zones and connect them via wireguard: it’s possible to move workload across different az or to connect services on different cPods</li>
+  <li>DNS resolution for all az</li>
+  <li>VPN for client with OpenVPN, Windows/Mac/Linux compatible</li>
+  <li>DHCP for each L2 connectivity</li>
+  <li>Dynamic L3 routing with BPG, with the possibility to peer NSX Edge in a cPod</li>
+  <li>Nested NSX and nested VSAN</li>
+</ul>
+
+<p>It needs for the physical layer:</p>
+<ul>
+  <li>at least 2 or 3 esx 6.7 + vCenter or VCF with 4 esx</li>
+  <li>vSAN for storage or any shared datastore (NFS, iSCSI, FC)</li>
+  <li>VLAN backend network or NSX overlay (NSX is not mandatory at all)</li>
+</ul>
+
+<p>I ran it for 4 years to help colleagues to have serious labs and also used it for all my customer workshops. We have never had severe issue of availability or performance - thanks to vSphere for its capabilities to run heavy workloads. It has been deployed in several country interconnected via wireguard: Paris(FR), OVH(FR), Madrid(SP), Munich(DE), Dubai(UAE).</p>
+
+<p>To give you ideas of use cases:</p>
+<ul>
+  <li>Large Proof Of Concept with Tanzu running Telco NVFs and consuming +480Gb in of memoryin kubernetes, 9 esx cPod</li>
+  <li>Demo cPod dedicated to vRealize Automation with NSX and vSAN connected with Public Cloud deploying hybrid App</li>
+  <li>multi VCF cPods in different regions (Paris &lt;-&gt; Dubai) moving VM workloads via HCX</li>
+  <li>Cloud Migration from cPod in OVH to VMC in AWS, moving VM via HCX, fully routed without application interruption, keeping on-prem DB</li>
+  <li>All new vSphere 8 cPod with Tanzu Grid 2.0 for training purpose</li>
+</ul>
+
+<p>This project is open source. You can use it, improve it but not in production. Nested is not supported/allowed for production.</p>
+
+<p><a href="https://github.com/bdereims/cPodFactory">Check out git repo</a> - you find here all the necessary to install yours.</p>
+
+<p>Enjoy!</p>
+
+  </div><a class="u-url" href="/vmware/sdd/vsphere/ovh/2022/06/24/cPodFactory.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">bdereims&#39; hacks</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">bdereims&#39; hacks</li><li><a class="u-email" href="mailto:bdereims@gmail.com">bdereims@gmail.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/bdereims"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">bdereims</span></a></li><li><a href="https://www.twitter.com/bdereims"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">bdereims</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>This is my personal blog which references all my hacks. Use as is without any warranty. If there are typos and disclosing information, let me know.</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
