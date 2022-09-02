@@ -2,7 +2,7 @@
 layout: post
 title:  "Nested SDDC for Testing/Lab/Demo"
 date:   2022-06-24 17:00:00 +0000
-categories: vmware sdd vsphere ovh
+categories: vmware
 ---
 cPodFactory is one of my projects during my VMware years. The main purpose is to automatically and dynamically create nested SDDC environments. It's means you have the capability to create a separated but nested vSphere SDDC fully routed (dedicated L2 but L3 routed) configured and ready to use.
 
