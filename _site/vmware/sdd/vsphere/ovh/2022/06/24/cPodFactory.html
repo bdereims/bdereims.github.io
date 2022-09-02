@@ -81,7 +81,7 @@
 
 <p>It needs for the physical layer:</p>
 <ul>
-  <li>at least 2 or 3 esx 6.7 + vCenter or VCF with 4 esx</li>
+  <li>at least 2 or 3 esx 6.7 + vCenter or <a href="https://www.vmware.com/products/cloud-foundation.html">VCF</a> with 4 esx</li>
   <li>vSAN for storage or any shared datastore (NFS, iSCSI, FC)</li>
   <li>VLAN backend network or NSX overlay (NSX is not mandatory at all)</li>
 </ul>
@@ -91,10 +91,10 @@
 <p>To give you some ideas of use cases:</p>
 <ul>
   <li>Large Proof Of Concept with Tanzu running Telco NVFs and consuming +480Gb memory in kubernetes, 9 esx cPod</li>
-  <li>Demo cPod dedicated to vRealize Automation with NSX and vSAN connected with Public Cloud deploying hybrid App</li>
-  <li>multi VCF cPods in different regions (Paris &lt;-&gt; Dubai) moving VM workloads via HCX</li>
-  <li>Cloud Migration from cPod in OVH to VMC in AWS, moving VM via HCX, fully routed without application interruption, keeping on-prem DB</li>
-  <li>All new vSphere 8 cPod with Tanzu Grid 2.0 for training purpose</li>
+  <li>Demo cPod dedicated to <a href="https://www.vmware.com/products/vrealize-automation.html">vRealize Automation</a> with NSX and vSAN connected with Public Cloud deploying hybrid App</li>
+  <li>multi <a href="https://www.vmware.com/products/cloud-foundation.html">VCF</a> cPods in different regions (Paris &lt;-&gt; Dubai) moving VM workloads via <a href="https://www.vmware.com/products/hcx.html">HCX</a></li>
+  <li>Cloud Migration from cPod in <a href="https://www.ovhcloud.com">OVH</a> to <a href="https://vmc.vmware.com/home">VMC</a> in AWS, moving VM via <a href="https://www.vmware.com/products/hcx.html">HCX</a>, fully routed without application interruption, keeping on-prem DB</li>
+  <li>All new vSphere 8 cPod with <a href="https://tanzu.vmware.com/">Tanzu</a> Grid 2.0 for training purpose</li>
   <li>nVIDIA AI Enterprise naked cPod bringing agile AI for enterprise running on vSphere</li>
 </ul>
 

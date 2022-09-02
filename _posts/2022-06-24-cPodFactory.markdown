@@ -33,7 +33,7 @@ cPodFactory also offers:
 - Utilities to automaticaly deploy OVA and Windows/Linux jumpHost in cPod
 
 It needs for the physical layer:
-- at least 2 or 3 esx 6.7 + vCenter or VCF with 4 esx
+- at least 2 or 3 esx 6.7 + vCenter or [VCF](https://www.vmware.com/products/cloud-foundation.html) with 4 esx
 - vSAN for storage or any shared datastore (NFS, iSCSI, FC)
 - VLAN backend network or NSX overlay (NSX is not mandatory at all)
 
@@ -41,10 +41,10 @@ I ran it for 4 years to help colleagues to have serious labs and also used it fo
 
 To give you some ideas of use cases:
 - Large Proof Of Concept with Tanzu running Telco NVFs and consuming +480Gb memory in kubernetes, 9 esx cPod 
-- Demo cPod dedicated to vRealize Automation with NSX and vSAN connected with Public Cloud deploying hybrid App
-- multi VCF cPods in different regions (Paris <-> Dubai) moving VM workloads via HCX
-- Cloud Migration from cPod in OVH to VMC in AWS, moving VM via HCX, fully routed without application interruption, keeping on-prem DB
-- All new vSphere 8 cPod with Tanzu Grid 2.0 for training purpose
+- Demo cPod dedicated to [vRealize Automation](https://www.vmware.com/products/vrealize-automation.html) with NSX and vSAN connected with Public Cloud deploying hybrid App
+- multi [VCF](https://www.vmware.com/products/cloud-foundation.html) cPods in different regions (Paris <-> Dubai) moving VM workloads via [HCX](https://www.vmware.com/products/hcx.html)
+- Cloud Migration from cPod in [OVH](https://www.ovhcloud.com) to [VMC](https://vmc.vmware.com/home) in AWS, moving VM via [HCX](https://www.vmware.com/products/hcx.html), fully routed without application interruption, keeping on-prem DB
+- All new vSphere 8 cPod with [Tanzu](https://tanzu.vmware.com/) Grid 2.0 for training purpose
 - nVIDIA AI Enterprise naked cPod bringing agile AI for enterprise running on vSphere
 
 This project is open source. You can use it, improve it but not in production. Nested is not supported/allowed for production.
