@@ -19,6 +19,16 @@ Today there are so many Infrastructure as Code solutions (pulumi, terraform and 
 
 These scripts give me flexibility to test things, to add nodes when it's needed. A perfect use case for me. I share it with you in a [git repo](https://github.com/bdereims/cloud-garage/tree/main/install/oci) a subpart of [cloud-garage](https://github.com/bdereims/cloud-garage/tree/main/install) repo.
 
+OCI portal:
+![OCI Portal](/gfx/oci-instances.png)
+
+VCN configuration:
+![VCN](/gfx/oci-vcn.png)
+
+With wireguard, I can directly interact with kubernetes from my laptop without exposing it publicly:
+![VCN](/gfx/oci-kubectl.png)
+
+
 Finally OCI is an excellent solution. I don't regret discovering Oracle Cloud Infrastructure.
 
 Enjoy!
