@@ -1,0 +1,24 @@
+---
+layout: post
+title:  "OCI - one more Cloud"
+date:   2022-09-02 08:00:00 +0000
+categories: oracle 
+---
+For an interne project I have to use [Oracle Cloud Infrastructure](https://www.oracle.com/cloud/). I was very skeptical about it and I'm wondering why OCI?
+Anyway, it was time to discover what it is and automate things to avoid to do again boring tasks.
+Today there are so many Infrastructure as Code solutions (pulumi, terraform and others) but it always good to go with  ``The Hard Way`` to discover a solution. This is why I decided to write some bash scripts executing [oci cli](https://docs.oracle.com/en-us/iaas/Content/API/Concepts/cliconcepts.htm) commands covering my needs:
+- create a compartment, it's like a tenant
+- create VCN, like a VPC
+- create Public & Private Subnets
+- create internet gateway
+- create ingress firewall rules
+- create instance of my Linux sixty9 jumpBox, configure iptables, wireguard VPN and DNS
+- possibility to deploy VMs as master/worker kubernetes nodes and bare metal worker kubernetes node with GPU in same VCN
+- use kubespray to setup kubernetes from sixty9
+- obviously destroy all the things
+
+These scripts give me flexibility to test things, to add nodes when it's needed. A perfect use case for me. I share it with you in a [git repo](https://github.com/bdereims/cloud-garage/tree/main/install/oci) a subpart of [cloud-garage](https://github.com/bdereims/cloud-garage/tree/main/install) repo.
+
+Finally OCI is an excellent solution. I don't regret discovering Oracle Cloud Infrastructure.
+
+Enjoy!
