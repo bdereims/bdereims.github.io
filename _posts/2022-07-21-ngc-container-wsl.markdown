@@ -2,7 +2,7 @@
 layout: post
 title:  "Run NGC container in Windows 11"
 date:   2022-07-21 15:37:15 +0200
-categories: conatiner ia ngc 
+categories: ia 
 ---
 I'm a big server Linux fan and have used laptop macOS for over 10 years now for its unix like shell. Windows has now the famous Windows Subsystem for Linux, time to give it a shot! Furthermore, I want also escape Docker Desktop fees... Let's try something fancy.
 
