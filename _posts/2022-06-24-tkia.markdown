@@ -1,0 +1,11 @@
+---
+layout: post
+title:  "Tanzu Konw It All"
+date:   2022-06-24 16:59:00 +0000
+categories: kubernetes
+---
+If you want to quickly discover Tanzu or practice a lot kubernetes in order to prepare CKA or CKAD certification, I have thing for you...
+
+Check out my [TKIA](https://github.com/bdereims/tkia) git repo, you get here links,docs and usefull scripts that I made during so many customer workshops.
+
+Enjoy!
