@@ -27,8 +27,10 @@ cPodFactory also offers:
 - DNS resolution for all az
 - VPN for client with OpenVPN, Windows/Mac/Linux compatible
 - DHCP for each L2 connectivity
-- Dynamic L3 routing with BPG, with the possibility to peer NSX Edge in a cPod
+- Dynamic L3 routing with BGP, with the possibility to peer NSX Edge in a cPod
 - Nested NSX and nested VSAN
+- It comes with cPodEdge and cPodRouter VM template for connectivity and network services (based on PhotonOS Linux)
+- Utilities to automaticaly deploy OVA and Windows/Linux jumpHost in cPod
 
 It needs for the physical layer:
 - at least 2 or 3 esx 6.7 + vCenter or VCF with 4 esx
