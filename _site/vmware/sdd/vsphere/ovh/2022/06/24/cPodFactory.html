@@ -7,8 +7,8 @@
 <meta name="generator" content="Jekyll v4.2.2" />
 <meta property="og:title" content="Nested SDDC for Testing/Lab/Demo" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="dFactory is one of my projects during my VMware years. The main purpose is to automatically and dynamically create nested SDDC environments. It’s means you with it the capability to create a separated but nested vSphere SDDC fully routed (dedicated L2 but L3 routed) configured and ready to use." />
-<meta property="og:description" content="dFactory is one of my projects during my VMware years. The main purpose is to automatically and dynamically create nested SDDC environments. It’s means you with it the capability to create a separated but nested vSphere SDDC fully routed (dedicated L2 but L3 routed) configured and ready to use." />
+<meta name="description" content="cPodFactory is one of my projects during my VMware years. The main purpose is to automatically and dynamically create nested SDDC environments. It’s means you have the capability to create a separated but nested vSphere SDDC fully routed (dedicated L2 but L3 routed) configured and ready to use." />
+<meta property="og:description" content="cPodFactory is one of my projects during my VMware years. The main purpose is to automatically and dynamically create nested SDDC environments. It’s means you have the capability to create a separated but nested vSphere SDDC fully routed (dedicated L2 but L3 routed) configured and ready to use." />
 <link rel="canonical" href="https://bdereims.github.io/vmware/sdd/vsphere/ovh/2022/06/24/cPodFactory.html" />
 <meta property="og:url" content="https://bdereims.github.io/vmware/sdd/vsphere/ovh/2022/06/24/cPodFactory.html" />
 <meta property="og:site_name" content="bdereims’ hacks" />
@@ -17,7 +17,7 @@
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Nested SDDC for Testing/Lab/Demo" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2022-06-24T19:00:00+02:00","datePublished":"2022-06-24T19:00:00+02:00","description":"dFactory is one of my projects during my VMware years. The main purpose is to automatically and dynamically create nested SDDC environments. It’s means you with it the capability to create a separated but nested vSphere SDDC fully routed (dedicated L2 but L3 routed) configured and ready to use.","headline":"Nested SDDC for Testing/Lab/Demo","mainEntityOfPage":{"@type":"WebPage","@id":"https://bdereims.github.io/vmware/sdd/vsphere/ovh/2022/06/24/cPodFactory.html"},"url":"https://bdereims.github.io/vmware/sdd/vsphere/ovh/2022/06/24/cPodFactory.html"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2022-06-24T19:00:00+02:00","datePublished":"2022-06-24T19:00:00+02:00","description":"cPodFactory is one of my projects during my VMware years. The main purpose is to automatically and dynamically create nested SDDC environments. It’s means you have the capability to create a separated but nested vSphere SDDC fully routed (dedicated L2 but L3 routed) configured and ready to use.","headline":"Nested SDDC for Testing/Lab/Demo","mainEntityOfPage":{"@type":"WebPage","@id":"https://bdereims.github.io/vmware/sdd/vsphere/ovh/2022/06/24/cPodFactory.html"},"url":"https://bdereims.github.io/vmware/sdd/vsphere/ovh/2022/06/24/cPodFactory.html"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="https://bdereims.github.io/feed.xml" title="bdereims' hacks" /></head>
 <body><header class="site-header" role="banner">
@@ -47,7 +47,7 @@
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    <p>dFactory is one of my projects during my VMware years. The main purpose is to automatically and dynamically create nested SDDC environments. It’s means you with it the capability to create a separated but nested vSphere SDDC fully routed (dedicated L2 but L3 routed) configured and ready to use.</p>
+    <p>cPodFactory is one of my projects during my VMware years. The main purpose is to automatically and dynamically create nested SDDC environments. It’s means you have the capability to create a separated but nested vSphere SDDC fully routed (dedicated L2 but L3 routed) configured and ready to use.</p>
 
 <p>It comes with <code class="language-plaintext highlighter-rouge">cpodctl</code> command line giving you all necessary command to manage cPod lifecycle. A cPod is a lab or if you prefer the nested vSphere. You can:</p>
 <ol>
@@ -86,13 +86,14 @@
 
 <p>I ran it for 4 years to help colleagues to have serious labs and also used it for all my customer workshops. We have never had severe issue of availability or performance - thanks to vSphere for its capabilities to run heavy workloads. It has been deployed in several country interconnected via wireguard: Paris(FR), OVH(FR), Madrid(SP), Munich(DE), Dubai(UAE).</p>
 
-<p>To give you ideas of use cases:</p>
+<p>To give you some ideas of use cases:</p>
 <ul>
-  <li>Large Proof Of Concept with Tanzu running Telco NVFs and consuming +480Gb in of memoryin kubernetes, 9 esx cPod</li>
+  <li>Large Proof Of Concept with Tanzu running Telco NVFs and consuming +480Gb memory in kubernetes, 9 esx cPod</li>
   <li>Demo cPod dedicated to vRealize Automation with NSX and vSAN connected with Public Cloud deploying hybrid App</li>
   <li>multi VCF cPods in different regions (Paris &lt;-&gt; Dubai) moving VM workloads via HCX</li>
   <li>Cloud Migration from cPod in OVH to VMC in AWS, moving VM via HCX, fully routed without application interruption, keeping on-prem DB</li>
   <li>All new vSphere 8 cPod with Tanzu Grid 2.0 for training purpose</li>
+  <li>nVIDIA AI Enterprise naked cPod bringing agile AI for enterprise running on vSphere</li>
 </ul>
 
 <p>This project is open source. You can use it, improve it but not in production. Nested is not supported/allowed for production.</p>
